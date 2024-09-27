@@ -3,12 +3,13 @@ name: New workflow
 jobs:
   greet_job:
     runs-on: ${{ matrix.os }}
-    stratergy: 
-    matrix: 
-      os: [ubuntu-latest, windows-latest]
-      node: [12,14,16]
-    exclude: windows-latest
-    node: 14
+    strategy: 
+      matrix: 
+        os: [ubuntu-latest, windows-latest]
+        node: [12,14,16]
+      exclude:
+        - os: windows
+          node: 14
     
 
     steps:
