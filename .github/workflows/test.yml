@@ -1,4 +1,6 @@
-name: New workflow 
+name: New workflow
+
+on: push
 
 jobs:
   greet_job:
@@ -6,21 +8,17 @@ jobs:
     strategy: 
       matrix: 
         os: [ubuntu-latest, windows-latest]
-        node: [12,14,16]
-      exclude:
-        - os: windows
-          node: 14
-    
+        node: [12, 14, 16]
 
     steps:
       - name: Greeting Job
         run: echo "Hello Everyone!"
 
-      - name: Current Date and time 
+      - name: Current Date and Time 
         run: date
-   
-      - name: create an artifact 
-        run: echo "Hey this is an artifact" > report.txt
+
+      - name: Create an Artifact 
+        run: echo "Hey, this is an artifact" > report.txt
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
