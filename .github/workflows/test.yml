@@ -1,0 +1,32 @@
+name: New workflow 
+
+jobs:
+  greet_job:
+    runs-on: ${{ matrix.os }}
+    stratergy: 
+    matrix: 
+      os: [ubuntu-latest, windows-latest]
+      node: [12,14,16]
+    exclude: windows-latest
+    node: 14
+    
+
+    steps:
+      - name: Greeting Job
+        run: echo "Hello Everyone!"
+
+      - name: Current Date and time 
+        run: date
+   
+      - name: create an artifact 
+        run: echo "Hey this is an artifact" > report.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: report
+          path: report.txt
+
+      - name: Run on main branch only
+        if: github.ref == 'refs/heads/main'
+        run: echo "This step runs only on the main branch!"
